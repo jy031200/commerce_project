@@ -30,4 +30,5 @@
    - 판매자, 제목으로 검색
 
 ## ERD
-작성 중
+![image](https://github.com/user-attachments/assets/ae27f1b7-1bc1-4700-b9a4-87edb2f0ca6c)
+
