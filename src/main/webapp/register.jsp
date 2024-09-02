@@ -17,7 +17,7 @@
 
         #register {
             color: black;
-            font-size: 30px;
+            font-size: 25px;
             font-weight: bold;
             text-align: center;
         }

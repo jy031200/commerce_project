@@ -15,7 +15,7 @@ public class UserDAO implements UserDAOlmpl {
     private PreparedStatement pstmt = null;
 
     @Override
-    public void addUserData(List<User> userList) {
+    public void addUserData(List<User> userList) { // 회원 데이터 저장
         String query = "INSERT INTO user(NAME, ID, PASSWORD, NUMBER) VALUES(?, ?, ?, ?)";
 
         try {
@@ -31,8 +31,6 @@ public class UserDAO implements UserDAOlmpl {
                 pstmt.setString(4, user.getNUMBER());
                 pstmt.addBatch();
             }
-
-            int[] result = pstmt.executeBatch();
             conn.commit();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -54,7 +52,7 @@ public class UserDAO implements UserDAOlmpl {
     }
 
     @Override
-    public boolean getUserData(String id, String password) {
+    public boolean getUserData1(String id, String password) { // 회원 데이터(id,password) 가져오기
         boolean isValidUser = false;
 
         String query = "SELECT COUNT(*) FROM user WHERE ID = ? AND PASSWORD = ?";
@@ -86,9 +84,67 @@ public class UserDAO implements UserDAOlmpl {
         return isValidUser;
     }
 
+    @Override
+    public User getUserData2(String ID) {
+        String query = "SELECT * FROM user WHERE ID = ?";
+
+        User user = null;
+        try {
+            Class.forName(DB_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, ID);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User();
+
+                user.setNAME(rs.getString("NAME"));
+                user.setID(rs.getString("ID"));
+                user.setPASSWORD(rs.getString("PASSWORD"));
+                user.setNUMBER(rs.getString("NUMBER"));
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+            }
+        }
+        return user;
+    }
+
+    @Override
+    public boolean DelUserData(String ID) {
+        boolean isDeleted = false;
+        String query = "DELETE FROM user WHERE ID = ?";
+
+        try {
+            Class.forName(DB_DRIVER);
+            conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
+            pstmt = conn.prepareStatement(query);
+            conn.setAutoCommit(false);
+
+            pstmt.setString(1, ID);
+
+            int rowAffected = pstmt.executeUpdate();
+            if(rowAffected>0){
+                isDeleted = true;
+                conn.commit();
+            } else {
+                conn.rollback();
+            }
+
+        } catch (ClassNotFoundException|SQLException e) {
+            e.printStackTrace();
+        }
+        return isDeleted;
+    }
+
     private boolean isPasswordValid(String password) {
         return password.length() >= 8 && password.length() <= 20;
     }
-
-
 }

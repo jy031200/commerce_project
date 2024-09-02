@@ -17,7 +17,7 @@
 
         #register {
             color: black;
-            font-size: 30px;
+            font-size: 25px;
             font-weight: bold;
             text-align: center;
         }
@@ -74,7 +74,6 @@
         #options {
             width: 40%;
             height: 30px;
-            text-align: center;
             font-size: 13px;
             margin-top: 10px;
         }

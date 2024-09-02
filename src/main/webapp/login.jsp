@@ -74,7 +74,7 @@
         <input type="text" id="id" name="id" required>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-        <input type="submit" value="로그인" onclick="home()"> <%-- 데이터를 서버로 전송 --%>
+        <input type="submit" value="로그인"> <%-- 데이터를 서버로 전송 --%>
     </form>
     <div class ="if-container">
         <p>회원이 아니라면?</p>
