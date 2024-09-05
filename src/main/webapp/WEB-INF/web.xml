@@ -10,5 +10,6 @@
         <welcome-file>register.jsp</welcome-file>
         <welcome-file>mypage.jsp</welcome-file>
         <welcome-file>mypage_info.jsp</welcome-file>
+        <welcome-file>main.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

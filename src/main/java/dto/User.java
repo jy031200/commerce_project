@@ -13,25 +13,12 @@ public class User {
     private String PASSWORD; // 비밀번호 길이 20자 제한
     private String NUMBER;   // 전화번호
 
-    // Getter, Setter
-    public String getUsername() {
-        return NAME;
-    }
-
-    public void setUsername(String NAME) {
-        this.NAME = NAME;
-    }
-
     public String getEmail() {
         return ID;
     }
-
-    public void setEmail(String email) {
-        this.ID = ID;
-    }
-
+/*
     @Override
     public String toString() {
         return "User{username='" + NAME + "', ID='" + ID + "'}";
-    }
+    }*/
 }

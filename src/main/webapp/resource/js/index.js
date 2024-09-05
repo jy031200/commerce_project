@@ -6,8 +6,8 @@ function redirectToLogin() {
     window.location.href = "/login.jsp";
 }
 
-function mypage(){
-    window.location.href = "/mypage.jsp";
+function mypage() {
+    window.location.href = "/mypage";
 }
 
 function myinfo() {

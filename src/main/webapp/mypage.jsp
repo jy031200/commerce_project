@@ -59,7 +59,7 @@
     <p id="name">${user.NAME}</p>
     <hr>
     <div class="myinfo-container">
-        <form action="mypage" method="post">
+        <form action="mypage_info" method="get">
             <input type="submit" id="btn_info" value="내 정보">
         </form>
         <input type="submit" id="btn_post" value="내 판매글">

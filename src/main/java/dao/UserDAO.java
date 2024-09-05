@@ -18,36 +18,27 @@ public class UserDAO implements UserDAOlmpl {
     public void addUserData(List<User> userList) { // 회원 데이터 저장
         String query = "INSERT INTO user(NAME, ID, PASSWORD, NUMBER) VALUES(?, ?, ?, ?)";
 
-        try {
-            Class.forName(DB_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            conn.setAutoCommit(false);
-            pstmt = conn.prepareStatement(query);
+        if(userList != null){
+            try {
+                Class.forName(DB_DRIVER);
+                conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                conn.setAutoCommit(false);
+                pstmt = conn.prepareStatement(query);
 
-            for (User user : userList) {
-                pstmt.setString(1, user.getNAME());
-                pstmt.setString(2, user.getID());
-                pstmt.setString(3, user.getPASSWORD()); // 비밀번호 해시 적용 추후 추가 혹은 고려 중
-                pstmt.setString(4, user.getNUMBER());
-                pstmt.addBatch();
-            }
-            conn.commit();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            try {
-                if (conn != null) {
-                    conn.rollback();
+                for (User user : userList) {
+                    pstmt.setString(1, user.getNAME());
+                    pstmt.setString(2, user.getID());
+                    pstmt.setString(3, user.getPASSWORD()); // 비밀번호 해시 적용 추후 추가 혹은 고려 중
+                    pstmt.setString(4, user.getNUMBER());
+                    pstmt.addBatch();
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        } finally {
-            try {
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
+                pstmt.executeBatch();
+                conn.commit();
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
+        } else{
+            System.out.println("userList is null");
         }
     }
 
