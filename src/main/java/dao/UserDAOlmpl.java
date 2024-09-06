@@ -9,5 +9,7 @@ public interface UserDAOlmpl {
     public boolean getUserData1(String id, String password);
     public User getUserData2(String ID);
 
+    public User getUserData3(String userId);
+
     public boolean DelUserData(String ID);
 }

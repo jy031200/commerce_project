@@ -1,4 +1,3 @@
-/*
 package Controller;
 
 import dto.User;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -32,9 +32,8 @@ public class RegisterController extends HttpServlet {
         String password = req.getParameter("password");
         String number = req.getParameter("number");
 
-        User newUser = new User(name, id, password, number);
-
-        userDAO.addUserData(List.of(newUser));
-        resp.sendRedirect("login.jsp");
+        User userList = new User(name, id, password, number);
+        userDAO.addUserData(List.of(userList));
+        resp.sendRedirect("/login.jsp");
     }
-}*/
+}

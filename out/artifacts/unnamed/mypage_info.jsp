@@ -23,7 +23,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
-        .myinfo-container #back {
+        .myinfo-container a {
             width: 25px;
             padding: 0px;
             border: none;
@@ -33,6 +33,7 @@
             cursor: pointer;
             font-size: 25px;
             margin-bottom: 5px;
+            text-decoration: none;
         }
         .myinfo-container h2 {
             font-size: 20px;
@@ -122,6 +123,7 @@
             margin-left: 80%;
         }
     </style>
+</head>
 <body>
 <% User user = (User) request.getAttribute("user");
     System.out.println("User object in JSP2: " + user);
@@ -129,7 +131,7 @@
 
 %>
 <div class="myinfo-container">
-    <button type="button" id="back" ><</button>
+    <a href="${pageContext.request.contextPath}/main.jsp">&lt;</a>
     <h2>내 정보 관리</h2>
     <div class="myname">
         <p id="name"> ${user.NAME}</p>
@@ -154,7 +156,7 @@
         <p id="number">${user.NUMBER}</p>
     </div>
     <hr>
-    <button type="button" id="out" onclick="deldata('<%= user.getEmail() %>')"> 회원 탈퇴</button>
+    <button type="button" id="out" onclick="deldata('<%= user.getID() %>')"> 회원 탈퇴</button>
 </div>
 <%
     } else {

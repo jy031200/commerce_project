@@ -38,7 +38,7 @@ public class MypageController extends HttpServlet {
             User user = userDAO.getUserData2(id);
             if(user != null) {
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("/mypage_info.jsp").forward(request, response);
+                request.getRequestDispatcher("/mypage.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
             }

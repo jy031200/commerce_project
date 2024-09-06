@@ -6,12 +6,12 @@ function redirectToLogin() {
     window.location.href = "/login.jsp";
 }
 
-function mypage(){
-    window.location.href = "/mypage.jsp";
+function mypage() {
+    window.location.href = "/mypage";
 }
 
 function myinfo() {
-    window.location.href = "/mypage_info.jsp";
+    window.location.href = "/main.jsp";
 }
 
 function deldata(id) {

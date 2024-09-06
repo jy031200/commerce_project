@@ -47,13 +47,6 @@
         .myinfo-container input[type="submit"]:hover {
             background-color: #f2f2f2;
         }
-        .myinfo-container a {
-            font-size: 10px;
-            display: block;
-            margin-top: 10px;
-            color: red;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
@@ -66,12 +59,11 @@
     <p id="name">${user.NAME}</p>
     <hr>
     <div class="myinfo-container">
-        <form action="mypage" method="post">
+        <form action="search_history" method="post">
             <input type="submit" id="btn_info" value="내 정보">
         </form>
         <input type="submit" id="btn_post" value="내 판매글">
         <input type="submit" id="btn_cart" value="내 장바구니">
-        <a href="http://localhost:8080/index.jsp">회원 탈퇴</a>
     </div>
 </div>
 <%
