@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-         import="dto.User"%>
+         import="dto.User,dto.Searchhistory"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,30 +56,30 @@
             background-color: white;
         }
         .search-container input[type="text"] {
-            width: 250px;
+            width: 270px;
+            height: 40px;
             margin-left: 20px;
             padding-left: 10px;
-            padding-right: 10px;
+            padding-right: 5px;
             font-size: 16px;
             border: none;
             place-content: center;
             outline: none;
 
         }
-        .search-container input[type="text"]:focus {
-            border: none;  /* 클릭 시 테두리 제거 */
-            box-shadow: none;
-        }
         .search-container button {
             width: 40px;
-            height: 43px;
+            height: 40px;
             margin-left: 10px;
             background-color: white;
+            margin-top: 1px;
+            border: none;
         }
         .search-container img {
             width: 30px;
-            height: 43px;
-            margin-top: -1px;
+            height: 34px;
+            margin-top: -2px;
+            margin-left: -5px;
         }
         .posts-container {
             display: flex;
@@ -149,10 +149,12 @@
 </header>
 
 <div class="search-container">
-    <input type="text" placeholder="찾으시는 상품을 검색해보세요!">
-    <button type="button" id="btn_search" onclick="mypage()"> <%-- 검색기록 저장 및 페이지 이동--%>
-        <img src="${pageContext.request.contextPath}/image/search_img.jpg">
-    </button>
+    <form action="search_history" method="post"> <%-- id는 html,css에서 구분, namedms 서블릿에서 구분--%>
+        <input type="text" id="search_text" name="search_text" placeholder="찾으시는 상품을 검색해보세요!">
+        <button type="submit" id="btn_search"> <%-- 검색기록 저장 및 페이지 이동--%>
+            <img src="${pageContext.request.contextPath}/image/search_img.jpg">
+        </button>
+    </form>
 </div>
 
 <div class="posts-container">

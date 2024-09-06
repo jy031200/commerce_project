@@ -156,7 +156,7 @@
         <p id="number">${user.NUMBER}</p>
     </div>
     <hr>
-    <button type="button" id="out" onclick="deldata('<%= user.getEmail() %>')"> 회원 탈퇴</button>
+    <button type="button" id="out" onclick="deldata('<%= user.getID() %>')"> 회원 탈퇴</button>
 </div>
 <%
     } else {

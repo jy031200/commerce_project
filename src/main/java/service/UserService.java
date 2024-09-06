@@ -16,5 +16,7 @@ public class UserService implements UserServicelmpl {
     @Override
     public boolean DeleteUser(String id){return userDAO.DelUserData(id);}
     @Override
-    public void addSearchhistory(String user_id){this.searchhistoryDAO.addSearchhistory(user_id);}
+    public void addSearchHistory(String userId, String search) {
+        searchhistoryDAO.addSearchHistory(userId, search);  // user_id와 search를 사용하여 검색 기록 추가
+    }
 }

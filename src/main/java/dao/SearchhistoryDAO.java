@@ -14,8 +14,8 @@ public class SearchhistoryDAO implements SearchhistoryDAOlmpl {
     private PreparedStatement pstmt = null;
 
     @Override
-    public void addSearchhistory(String user_id) {
-        String query = "INSERT INTO searchhistory(user_id,search) values(?,?)";
+    public void addSearchHistory(String user_id, String search) {
+        String query = "INSERT INTO SearchHistory (user_id, search) VALUES (?, ?)";
 
         try {
             Class.forName(DB_DRIVER);
@@ -24,10 +24,26 @@ public class SearchhistoryDAO implements SearchhistoryDAOlmpl {
             pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, user_id);
-            pstmt.executeQuery();
-
+            pstmt.setString(2, search);
+            pstmt.executeUpdate();
+            conn.commit();
         } catch (ClassNotFoundException | SQLException e) {
+            try {
+                if (conn != null) {
+                    conn.rollback();  // 트랜잭션 롤백
+                    System.out.println("Transaction rolled back due to error.");
+                }
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
             e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException closeEx) {
+                closeEx.printStackTrace();
+            }
         }
     }
 
